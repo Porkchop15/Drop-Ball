@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Game"
+    android:id="@+id/relativeLayout"
+    android:background= "@drawable/game">
+
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="490dp"
+        android:background="@android:color/transparent"
+        android:onClick="startGame" />
+
+
+
+    <!-- Add 6 slots (ImageViews) and guess buttons here -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="200dp"
+        android:background="@android:color/transparent"
+        android:weightSum="9"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/box1"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/kween"
+            />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/box2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/listen"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/box3"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/cardo"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="330dp"
+        android:background="@android:color/transparent"
+        android:weightSum="9"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/box4"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/ngi"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/box5"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/pacman"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/box6"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/cent"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Add these buttons below the startButton in activity_main.xml -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="600dp"
+        android:background="#FFF"
+        android:gravity = "bottom"
+        android:weightSum="12"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton1"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:layout_below="@id/startButton"
+                android:onClick="onGuessButtonClick"
+                android:text="Guess 1"
+                android:background="@drawable/kween1"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton2"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:layout_below="@id/startButton"
+                android:background="@drawable/listen1"
+                android:onClick="onGuessButtonClick"
+                android:text="Guess 2" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton3"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:layout_below="@id/startButton"
+                android:onClick="onGuessButtonClick"
+                android:text="Guess 3"
+                android:background="@drawable/cardo1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton4"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:text="Guess 4"
+                android:layout_below="@id/startButton"
+                android:onClick="onGuessButtonClick"
+                android:background="@drawable/ngi1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton5"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:text="Guess 5"
+                android:layout_below="@id/startButton"
+                android:onClick="onGuessButtonClick"
+                android:background="@drawable/pacman1"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/guessButton6"
+                android:layout_width="55dp"
+                android:layout_height="110dp"
+                android:text="Guess 6"
+                android:layout_below="@id/startButton"
+                android:onClick="onGuessButtonClick"
+                android:background="@drawable/cent1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ballImageView"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="13dp"
+        android:src="@drawable/bola"
+        android:visibility="invisible" />
+
+</RelativeLayout>
