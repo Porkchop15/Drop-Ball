@@ -208,12 +208,6 @@ public class Game extends AppCompatActivity {
                     Toast.makeText(Game.this, "Remaining Attempts: " + remainingAttempts, Toast.LENGTH_SHORT).show();
                 }
 
-                // Change the size of the ball
-                int newBallSize = 60; // Change this value to your desired size
-                ViewGroup.LayoutParams params = ballImageView.getLayoutParams();
-                params.width = newBallSize;
-                params.height = newBallSize;
-                ballImageView.setLayoutParams(params);
             }
         }
     }
