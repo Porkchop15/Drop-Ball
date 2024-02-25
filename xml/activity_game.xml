@@ -119,13 +119,13 @@
 
     <!-- Add these buttons below the startButton in activity_main.xml -->
 
-    <LinearLayout
+ <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="600dp"
-        android:background="#FFF"
         android:gravity = "bottom"
         android:weightSum="12"
+        android:background="@android:color/transparent"
         android:orientation="horizontal">
 
         <LinearLayout
