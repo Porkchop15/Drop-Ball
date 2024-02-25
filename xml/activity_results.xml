@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/results">
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="Game Over!"/>
+
+    <TextView
+        android:id="@+id/attemptsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:text="Total Attempts: 0"/>
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:text="Total Score: 0"/>
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="250dp"
+        android:onClick="goToMainActivity"
+        android:background="@android:color/transparent"
+        />
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:onClick="goToExit"
+        android:background="@android:color/transparent"
+        />
+
+
+</LinearLayout>
