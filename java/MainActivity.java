@@ -12,10 +12,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startService(new Intent(this, MusicService.class));
     }
 
-    public void goToInstructions(View v){
-        Intent i = new Intent(this, Instructions.class);
+    public void goToHome(View v){
+        Intent i = new Intent(this, Home.class);
         startActivity(i);
         finish();
     }
@@ -26,4 +27,6 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         finish();
     }
+
+
 }
