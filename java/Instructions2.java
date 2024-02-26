@@ -14,8 +14,8 @@ public class Instructions2 extends AppCompatActivity {
         setContentView(R.layout.activity_instructions2);
     }
 
-    public void goToGame(View v){
-        Intent i = new Intent(this, Game.class);
+    public void goToInstructions3(View v){
+        Intent i = new Intent(this, Instructions3.class);
         startActivity(i);
         finish();
     }
