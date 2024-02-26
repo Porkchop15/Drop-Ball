@@ -13,14 +13,10 @@ public class Instructions4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions4);
     }
-    public void goToInstructions3(View v){
-        Intent i = new Intent(this, Instructions3.class);
-        startActivity(i);
-        finish();
-    }
 
-    public void goToInstructions5(View v){
-        Intent i = new Intent(this, Instructions5.class);
+
+    public void goToGame(View v){
+        Intent i = new Intent(this, Game.class);
         startActivity(i);
         finish();
     }
