@@ -8,7 +8,7 @@ dependencies {
 }
 ```
 
-#PADAGDAG NETO
+#PADAGDAG NETO sa 
 AndroidManifest.xml
 
 >Palagay neto bago mag line ng <activity....
