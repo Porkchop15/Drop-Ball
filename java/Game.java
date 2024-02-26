@@ -52,6 +52,12 @@ public class Game extends AppCompatActivity {
 
     }
 
+    public void goToInstructions4(View v){
+        Intent i = new Intent(this, Instructions4.class);
+        startActivity(i);
+        finish();
+    }
+
     public void startGame(View view) {
         if (!animationInProgress) {
             // Check if at least one guess button is selected
@@ -77,7 +83,7 @@ public class Game extends AppCompatActivity {
 
     private void resetUI() {
         // Reset UI elements to their initial state
-        int[] boxImages = {R.drawable.kween, R.drawable.listen, R.drawable.cardo, R.drawable.ngi, R.drawable.pacman, R.drawable.cent};
+        int[] boxImages = {R.drawable.meme1, R.drawable.meme2, R.drawable.meme3, R.drawable.meme4, R.drawable.meme5, R.drawable.meme6};
 
         for (int i = 0; i < boxes.length; i++) {
             boxes[i].setImageResource(boxImages[i]);
