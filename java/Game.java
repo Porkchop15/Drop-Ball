@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -20,7 +17,7 @@ import java.util.Random;
 public class Game extends AppCompatActivity {
 
     private ImageView[] boxes = new ImageView[6];
-    private ImageButton[] guessButtons = new ImageButton[6];  // Changed to ImageButton
+    private Button[] guessButtons = new Button[6];  // Changed to Button
     private Button startButton;
 
     private int ballPosition;
@@ -49,17 +46,17 @@ public class Game extends AppCompatActivity {
             int buttonId = getResources().getIdentifier("guessButton" + (i + 1), "id", getPackageName());
             guessButtons[i] = findViewById(buttonId);
         }
+
         resetAttempts();
         ballImageView = findViewById(R.id.ballImageView);
 
     }
 
-
     public void startGame(View view) {
         if (!animationInProgress) {
             // Check if at least one guess button is selected
             boolean isAnyButtonSelected = false;
-            for (ImageButton button : guessButtons) {
+            for (Button button : guessButtons) {
                 if (button.isSelected()) {
                     isAnyButtonSelected = true;
                     break;
@@ -86,13 +83,12 @@ public class Game extends AppCompatActivity {
             boxes[i].setImageResource(boxImages[i]);
         }
 
-        // Reset guess buttons (changed to ImageButton)
-        for (ImageButton button : guessButtons) {
+        // Reset guess buttons (changed to Button)
+        for (Button button : guessButtons) {
             button.setSelected(false);
             button.setEnabled(true);
         }
     }
-
 
     private void animateBall() {
         // Simulate ball movement and set the final position
@@ -145,9 +141,9 @@ public class Game extends AppCompatActivity {
         animationInProgress = true;
     }
 
-    // Helper method to set the ball's position programmatically
+    // Modify setBallPosition method to use currentBallPosition
     private void setBallPosition() {
-        int[] boxLeftMargins = {50, 150, 250, 350, 450, 550}; // Adjust these margins as needed
+        int[] boxLeftMargins = {13, 150, 250, 350, 450, 550}; // Adjust these margins as needed
         int leftMargin = boxLeftMargins[currentBallPosition];
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ballImageView.getLayoutParams();
         params.leftMargin = leftMargin;
@@ -168,22 +164,22 @@ public class Game extends AppCompatActivity {
     private void showResult() {
         // Display the result only if the animation was in progress
         if (animationInProgress) {
-            if (ballPosition >= 0 && ballPosition < 6) {
+            if (currentBallPosition >= 0 && currentBallPosition < 6) {
                 // Set the image directly for the box that corresponds to the ball position
-                boxes[ballPosition].setImageResource(R.drawable.bola);
+                boxes[currentBallPosition].setImageResource(R.drawable.bola);
 
-                int selectedButtonIndex = -1;
+                boolean isCorrectGuess = false;
 
                 // Check which guess button is selected
                 for (int i = 0; i < 6; i++) {
                     if (guessButtons[i].isSelected()) {
-                        selectedButtonIndex = i;
+                        isCorrectGuess = i == currentBallPosition;
                         break;
                     }
                 }
 
                 // Check if the selected guess button matches the ball position
-                if (selectedButtonIndex != -1 && selectedButtonIndex == ballPosition) {
+                if (isCorrectGuess) {
                     // You win! Implement the winning logic (e.g., show a message)
                     Toast.makeText(Game.this, "Congratulations! You guessed correctly!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -192,12 +188,12 @@ public class Game extends AppCompatActivity {
                 }
 
                 // Enable all guess buttons after showing the result
-                for (ImageButton button : guessButtons) {
+                for (Button button : guessButtons) {
                     button.setEnabled(true);
                 }
 
                 // Calculate the score
-                int score = calculateScore(selectedButtonIndex, ballPosition);
+                int score = calculateScore(isCorrectGuess, currentBallPosition);
                 remainingAttempts--;
 
                 if (remainingAttempts <= 0) {
@@ -207,22 +203,18 @@ public class Game extends AppCompatActivity {
                     // Show the remaining attempts
                     Toast.makeText(Game.this, "Remaining Attempts: " + remainingAttempts, Toast.LENGTH_SHORT).show();
                 }
-
             }
         }
     }
 
-
-
-
-
-    private int calculateScore(int selectedButtonIndex, int ballPosition) {
+    // Modify the calculateScore method to take a boolean parameter indicating correct guess
+    private int calculateScore(boolean isCorrectGuess, int ballPosition) {
         // Implement your scoring logic here
         // For example, you can deduct points for each incorrect guess
         // and provide bonus points for correct guesses.
         // Adjust this logic based on your game's scoring rules.
         // For simplicity, let's assume each correct guess gives 10 points.
-        return selectedButtonIndex == ballPosition ? 10 : 0;
+        return isCorrectGuess ? 10 : 0;
     }
 
     private void launchNextActivity(int score) {
@@ -233,14 +225,12 @@ public class Game extends AppCompatActivity {
         finish(); // Optional: Finish the current activity to prevent going back.
     }
 
-
     public void onGuessButtonClick(View view) {
         // Reset the state of all guess buttons
-        for (ImageButton button : guessButtons) {
+        for (Button button : guessButtons) {
             button.setSelected(false);
         }
-
-        // Set the selected state for the clicked button (changed to ImageButton)
+        // Set the selected state for the clicked button (changed to Button)
         view.setSelected(true);
     }
 }
