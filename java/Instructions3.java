@@ -20,8 +20,8 @@ public class Instructions3 extends AppCompatActivity {
         finish();
     }
 
-    public void goToInstructions4(View v){
-        Intent i = new Intent(this, Instructions4.class);
+    public void goToGame(View v){
+        Intent i = new Intent(this, Game.class);
         startActivity(i);
         finish();
     }
