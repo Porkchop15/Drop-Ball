@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/home" />
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="170dp"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center"
+        android:onClick="goToDevelopers" />
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="325dp"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center"
+        android:onClick="goToInstructions" />
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="475dp"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center"
+        android:onClick="goToGame" />
+
+
+</RelativeLayout>
