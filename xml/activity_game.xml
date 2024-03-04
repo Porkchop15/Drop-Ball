@@ -12,12 +12,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/game1" />
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
-
     <Button
         android:layout_width="80dp"
         android:layout_height="60dp"
