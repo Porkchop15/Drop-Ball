@@ -1,7 +1,6 @@
 package com.example.dropballproject;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,15 +29,12 @@ public class Game extends AppCompatActivity {
     private int currentBallPosition; // Add this variable
     private Button selectedButton = null;
 
-    private VideoView videoView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         startButton = findViewById(R.id.startButton);
-        videoView = findViewById(R.id.videoView);
 
         // Initialize image views for boxes
         for (int i = 0; i < 6; i++) {
@@ -92,7 +87,6 @@ public class Game extends AppCompatActivity {
         int[] boxImages = {R.drawable.meme1, R.drawable.meme2, R.drawable.meme3, R.drawable.meme4, R.drawable.meme5, R.drawable.meme6};
 
         for (int i = 0; i < boxes.length; i++) {
-            boxes[i].setVisibility(View.VISIBLE); // Set the visibility to VISIBLE
             boxes[i].setImageResource(boxImages[i]);
         }
 
@@ -103,53 +97,56 @@ public class Game extends AppCompatActivity {
         }
     }
 
-
-    // ...
-
     private void animateBall() {
         // Simulate ball movement and set the final position
         Random random = new Random();
         ballPosition = random.nextInt(6);
         currentBallPosition = ballPosition; // Store the initial ball position
 
-        // Hide other views and make VideoView visible
-        for (ImageView box : boxes) {
-            box.setVisibility(View.INVISIBLE);
-        }
-        videoView.setVisibility(View.VISIBLE);
+        int animationDuration = 2000; // 2 seconds (adjust as needed)
+        int numberOfDisappearances = 5;
 
-        // Set the video resource and start playing
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.video1; // Replace "your_single_video" with your video file name (without extension)
-        videoView.setVideoPath(path);
-        videoView.start();
+        // Calculate the interval between each disappearance and reappearance
+        int interval = animationDuration / (numberOfDisappearances * 2);
 
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            private boolean completed = false;
+        // Simulate a series of disappearances and reappearances
+        for (int i = 0; i < numberOfDisappearances; i++) {
+            final int finalI = i;
 
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                // When the video is completed, show the ball and proceed with logic
-                if (!completed) {
-                    completed = true;
-                    videoView.setVisibility(View.INVISIBLE);
+            // Disappear
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ballImageView.setVisibility(View.INVISIBLE);
+                }
+            }, interval * (2 * finalI));
+
+            // Reappear
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
                     resetUI();
                     currentBallPosition = random.nextInt(6); // Use a new random position for each reappearance
                     ballImageView.setImageResource(getImageResourceByPosition(currentBallPosition));
                     setBallPosition(); // Set the position programmatically
                     ballImageView.setVisibility(View.VISIBLE);
-                    showResult();
-                    animationInProgress = false;
                 }
+            }, interval * (2 * finalI + 1));
+        }
+
+        // Reset the ball's visibility at the end of the animation
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ballImageView.setVisibility(View.INVISIBLE);
+                resetUI();
+                showResult();
+                animationInProgress = false;
             }
-        });
+        }, animationDuration);
 
         animationInProgress = true;
     }
-
-
-
-
-
 
 
     // Modify setBallPosition method to use currentBallPosition
@@ -185,9 +182,14 @@ public class Game extends AppCompatActivity {
                 for (int i = 0; i < 6; i++) {
                     if (guessButtons[i].isSelected()) {
                         // Compare the index of the selected button with the ball position
-                        isCorrectGuess = i == currentBallPosition;
+                        isCorrectGuess = i + 1 == currentBallPosition + 1; // Add 1 to align with box indices
                         break;
                     }
+                }
+
+                // Enable all guess buttons before showing the result
+                for (Button button : guessButtons) {
+                    button.setEnabled(true);
                 }
 
                 // Check if the selected guess button matches the ball position
@@ -197,11 +199,6 @@ public class Game extends AppCompatActivity {
                 } else {
                     // Implement the logic for when the guessed position is incorrect
                     Toast.makeText(Game.this, "Sorry! You guessed incorrectly.", Toast.LENGTH_SHORT).show();
-                }
-
-                // Enable all guess buttons after showing the result
-                for (Button button : guessButtons) {
-                    button.setEnabled(true);
                 }
 
                 // Calculate the score
@@ -218,6 +215,8 @@ public class Game extends AppCompatActivity {
             }
         }
     }
+
+
 
 
     // Modify the calculateScore method to take a boolean parameter indicating correct guess
